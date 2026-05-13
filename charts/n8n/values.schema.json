@@ -569,6 +569,13 @@
           "title": "existingSecret",
           "type": "string"
         },
+        "existingSecretUsernameKey": {
+          "default": "postgres-username",
+          "description": "The key in `externalPostgresql.existingSecret` that stores the PostgreSQL username.",
+          "required": [],
+          "title": "existingSecretUsernameKey",
+          "type": "string"
+        },
         "existingSecretPasswordKey": {
           "default": "postgres-password",
           "description": "The key in `externalPostgresql.existingSecret` that stores the PostgreSQL password.",
@@ -612,6 +619,7 @@
         "port",
         "database",
         "existingSecret",
+        "existingSecretUsernameKey",
         "existingSecretPasswordKey"
       ],
       "title": "externalPostgresql",

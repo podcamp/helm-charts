@@ -1101,6 +1101,8 @@ externalPostgresql:
   # -- The name of an existing secret with PostgreSQL (must contain key `postgres-password`) and credentials.
   # When it's set, the `externalPostgresql.password` parameter is ignored
   existingSecret: ""
+  # -- The key in `externalPostgresql.existingSecret` that stores the PostgreSQL username.
+  existingSecretUsernameKey: "postgres-username"
   # -- The key in `externalPostgresql.existingSecret` that stores the PostgreSQL password.
   existingSecretPasswordKey: "postgres-password"
 

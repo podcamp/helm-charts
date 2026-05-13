@@ -589,7 +589,30 @@ tests:
           path: spec.template.spec.containers[?(@.name == "n8n-worker")].env
           content:
             name: DB_POSTGRESDB_USER
-            value: n8npostgres
+            valueFrom:
+              secretKeyRef:
+                name: n8n-postgresql
+                key: postgres-username
+                optional: true
+        template: statefulset-worker.yaml
+
+  - it: should set postgresdb user environment variable from external secret with custom key when externalPostgresql.existingSecretUsernameKey is set
+    set:
+      db:
+        type: postgresdb
+      externalPostgresql:
+        existingSecret: custom-secret
+        existingSecretUsernameKey: custom-postgres-username
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[?(@.name == "n8n-worker")].env
+          content:
+            name: DB_POSTGRESDB_USER
+            valueFrom:
+              secretKeyRef:
+                name: custom-secret
+                key: custom-postgres-username
+                optional: true
         template: statefulset-worker.yaml
 
   - it: should set postgresdb password environment variable from secret with key password when postgresql.enabled is true and postgresql.auth.password is set

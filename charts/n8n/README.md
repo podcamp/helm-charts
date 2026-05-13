@@ -161,6 +161,7 @@ externalPostgresql:
   database: "n8n"
 
   existingSecret: "my-k8s-secret-contains-postgres-password-key-and-credential"
+  existingSecretUsernameKey: "my-postgres-username-key"
   existingSecretPasswordKey: "my-postgres-password-key"
 ```
 
@@ -222,6 +223,7 @@ externalPostgresql:
   database: "n8n"
 
   existingSecret: "my-k8s-secret-contains-postgres-password-key-and-credential"
+  existingSecretUsernameKey: "my-postgres-username-key"
   existingSecretPasswordKey: "my-postgres-password-key"
 
 worker:
@@ -971,9 +973,10 @@ helm upgrade [RELEASE_NAME] community-charts/n8n
 | dnsPolicy | string | `""` | For more information checkout: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy |
 | encryptionKey | string | `""` | If you install n8n first time, you can keep this empty and it will be auto generated and never change again. If you already have a encryption key generated before, please use it here. |
 | existingEncryptionKeySecret | string | `""` | The name of an existing secret with encryption key. The secret must contain a key with the name N8N_ENCRYPTION_KEY. |
-| externalPostgresql | object | `{"database":"n8n","existingSecret":"","existingSecretPasswordKey":"postgres-password","host":"","password":"","port":5432,"username":"postgres"}` | External PostgreSQL parameters |
+| externalPostgresql | object | `{"database":"n8n","existingSecret":"","existingSecretUsernameKey":"postgres-username","existingSecretPasswordKey":"postgres-password","host":"","password":"","port":5432,"username":"postgres"}` | External PostgreSQL parameters |
 | externalPostgresql.database | string | `"n8n"` | The name of the external PostgreSQL database. For more information: https://docs.n8n.io/hosting/configuration/supported-databases-settings/#required-permissions |
 | externalPostgresql.existingSecret | string | `""` | The name of an existing secret with PostgreSQL (must contain key `postgres-password`) and credentials. When it's set, the `externalPostgresql.password` parameter is ignored |
+| externalPostgresql.existingSecretUsernameKey | string | `"postgres-username"` | The key in `externalPostgresql.existingSecret` that stores the PostgreSQL username. |
 | externalPostgresql.existingSecretPasswordKey | string | `"postgres-password"` | The key in `externalPostgresql.existingSecret` that stores the PostgreSQL password. |
 | externalPostgresql.host | string | `""` | External PostgreSQL server host |
 | externalPostgresql.password | string | `""` | External PostgreSQL password |

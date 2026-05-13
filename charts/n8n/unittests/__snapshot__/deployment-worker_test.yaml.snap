@@ -223,7 +223,11 @@ should match snapshot of default values:
                 - name: N8N_CONCURRENCY_PRODUCTION_LIMIT
                   value: "10"
                 - name: DB_POSTGRESDB_USER
-                  value: postgres
+                  valueFrom:
+                    secretKeyRef:
+                      key: postgres-username
+                      name: n8n-postgresql
+                      optional: true
                 - name: DB_POSTGRESDB_PASSWORD
                   valueFrom:
                     secretKeyRef:
@@ -306,6 +310,7 @@ should match snapshot of default values:
     apiVersion: v1
     data:
       postgres-password: ""
+      postgres-username: cG9zdGdyZXM=
     kind: Secret
     metadata:
       labels:
@@ -576,7 +581,11 @@ should match snapshot of postgres ssl certificate values:
                 - name: N8N_CONCURRENCY_PRODUCTION_LIMIT
                   value: "10"
                 - name: DB_POSTGRESDB_USER
-                  value: postgres
+                  valueFrom:
+                    secretKeyRef:
+                      key: postgres-username
+                      name: n8n-postgresql
+                      optional: true
                 - name: DB_POSTGRESDB_PASSWORD
                   valueFrom:
                     secretKeyRef:
@@ -691,6 +700,7 @@ should match snapshot of postgres ssl certificate values:
     apiVersion: v1
     data:
       postgres-password: ""
+      postgres-username: cG9zdGdyZXM=
     kind: Secret
     metadata:
       labels:
@@ -957,7 +967,11 @@ should match snapshot of worker persistence:
                 - name: N8N_CONCURRENCY_PRODUCTION_LIMIT
                   value: "10"
                 - name: DB_POSTGRESDB_USER
-                  value: postgres
+                  valueFrom:
+                    secretKeyRef:
+                      key: postgres-username
+                      name: n8n-postgresql
+                      optional: true
                 - name: DB_POSTGRESDB_PASSWORD
                   valueFrom:
                     secretKeyRef:
@@ -1048,6 +1062,7 @@ should match snapshot of worker persistence:
     apiVersion: v1
     data:
       postgres-password: ""
+      postgres-username: cG9zdGdyZXM=
     kind: Secret
     metadata:
       labels:

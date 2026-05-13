@@ -149,8 +149,17 @@ spec:
               value: "true"
             - name: N8N_CONCURRENCY_PRODUCTION_LIMIT
               value: {{ .Values.worker.concurrency | quote }}
+            {{- if .Values.postgresql.enabled }}
             - name: DB_POSTGRESDB_USER
               value: {{ include "n8n.postgresql.username" . }}
+            {{- else }}
+            - name: DB_POSTGRESDB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ default (include "n8n.postgresql.fullname" .) .Values.externalPostgresql.existingSecret }}
+                  key: {{ default "postgres-username" .Values.externalPostgresql.existingSecretUsernameKey }}
+                  optional: true
+            {{- end }}
             - name: DB_POSTGRESDB_PASSWORD
               valueFrom:
                 secretKeyRef:
