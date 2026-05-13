@@ -5,6 +5,10 @@
 
 ![MIT License](https://img.shields.io/github/license/community-charts/helm-charts) ![Release Charts](https://github.com/community-charts/helm-charts/actions/workflows/release.yml/badge.svg?branch=main) [![Releases downloads](https://img.shields.io/github/downloads/community-charts/helm-charts/total.svg)](https://github.com/community-charts/helm-charts/releases) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/community-charts)](https://artifacthub.io/packages/search?repo=community-charts)
 
+## About This Fork
+
+This repository is maintained and contributed to by **pod.camp srl** as a fork of the original Community Kubernetes Helm Charts project. We are committed to keeping this open source project alive and actively maintained. Our mission is to rapidly deliver chart customizations and improvements to meet evolving deployment needs while maintaining compatibility and quality standards.
+
 ## Usage
 
 [Helm](https://helm.sh) must be installed to use the charts.
@@ -23,9 +27,17 @@ You can then run `helm search repo community-charts` to see the charts.
 
 [Helm](https://helm.sh) charts can be found on Github: <https://github.com/community-charts/helm-charts/>
 
-## Contributors
+## Credits
 
-Community Charts are made with <3 thanks to these wonderful people
+We acknowledge and thank the original maintainers and contributors of the Community Kubernetes Helm Charts project for their excellent foundation and ongoing work. This fork builds upon their dedicated efforts to provide high-quality Helm charts to the community.
+
+### Current Contributors
+
+This fork is maintained and contributed to by pod.camp srl, working to enhance and customize charts for our ecosystem.
+
+### Original Project Contributors
+
+Community Charts are made with <3 thanks to these wonderful people from the original project
 ([emoji key](https://allcontributors.org/docs/en/emoji-key#table)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
