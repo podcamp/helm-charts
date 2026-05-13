@@ -643,8 +643,8 @@ tests:
         type: postgresdb
       externalRedis:
         existingSecret: custom-secret
-        existingUsernameKey: custom-redis-username
-        existingPasswordKey: custom-redis-password
+        existingSecretUsernameKey: custom-redis-username
+        existingSecretPasswordKey: custom-redis-password
     asserts:
       - contains:
           path: spec.template.spec.containers[?(@.name == "n8n-main")].env

@@ -663,18 +663,18 @@
           "title": "existingSecret",
           "type": "string"
         },
-        "existingUsernameKey": {
+        "existingSecretUsernameKey": {
           "default": "redis-username",
           "description": "The key in `externalRedis.existingSecret` that stores the Redis username.",
           "required": [],
-          "title": "existingUsernameKey",
+          "title": "existingSecretUsernameKey",
           "type": "string"
         },
-        "existingPasswordKey": {
+        "existingSecretPasswordKey": {
           "default": "redis-password",
           "description": "The key in `externalRedis.existingSecret` that stores the Redis password.",
           "required": [],
-          "title": "existingPasswordKey",
+          "title": "existingSecretPasswordKey",
           "type": "string"
         },
         "clusterNodes": {
@@ -730,7 +730,7 @@
           "type": "boolean"
         }
       },
-      "required": ["database", "host", "username", "password", "port", "existingSecret", "existingUsernameKey", "existingPasswordKey", "clusterNodes", "tls", "dualStack"],
+      "required": ["database", "host", "username", "password", "port", "existingSecret", "existingSecretUsernameKey", "existingSecretPasswordKey", "clusterNodes", "tls", "dualStack"],
       "title": "externalRedis",
       "type": "object"
     },

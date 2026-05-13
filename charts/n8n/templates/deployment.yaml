@@ -153,13 +153,13 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ default (include "n8n.redis.fullname" .) .Values.externalRedis.existingSecret }}
-                  key: {{ default "redis-username" .Values.externalRedis.existingUsernameKey }}
+                  key: {{ default "redis-username" .Values.externalRedis.existingSecretUsernameKey }}
                   optional: true
             - name: QUEUE_BULL_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ default (include "n8n.redis.fullname" .) .Values.externalRedis.existingSecret }}
-                  key: {{ default "redis-password" .Values.externalRedis.existingPasswordKey }}
+                  key: {{ default "redis-password" .Values.externalRedis.existingSecretPasswordKey }}
                   optional: true
             {{- end }}
           {{- end }}

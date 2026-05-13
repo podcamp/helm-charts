@@ -980,13 +980,13 @@ helm upgrade [RELEASE_NAME] community-charts/n8n
 | externalPostgresql.port | int | `5432` | External PostgreSQL server port |
 | externalPostgresql.username | string | `"postgres"` | External PostgreSQL username |
 | externalRedis | object | `{"clusterNodes":[],"database":0,"dualStack":false,"existingSecret":"","host":"","password":"","port":6379,"tls":{"enabled":false},"username":""}` | External Redis parameters |
-| externalRedis | object | `{"clusterNodes":[],"database":0,"dualStack":false,"existingPasswordKey":"redis-password","existingSecret":"","existingUsernameKey":"redis-username","host":"","password":"","port":6379,"tls":{"enabled":false},"username":""}` | External Redis parameters |
+| externalRedis | object | `{"clusterNodes":[],"database":0,"dualStack":false,"existingSecretPasswordKey":"redis-password","existingSecret":"","existingSecretUsernameKey":"redis-username","host":"","password":"","port":6379,"tls":{"enabled":false},"username":""}` | External Redis parameters |
 | externalRedis.clusterNodes | list | `[]` | List of Redis Cluster nodes. Setting this variable will create a Redis Cluster client instead of a Redis client, and n8n will ignore `externalRedis.host` and `externalRedis.port`. |
 | externalRedis.database | int | `0` | Redis database for Bull queue. |
 | externalRedis.dualStack | bool | `false` | Enable dual-stack support (IPv4 and IPv6) on Redis connections. |
 | externalRedis.existingSecret | string | `""` | The name of an existing secret with Redis (must contain key `redis-password`) and Sentinel credentials. When it's set, the `externalRedis.password` parameter is ignored |
-| externalRedis.existingUsernameKey | string | `"redis-username"` | The key in `externalRedis.existingSecret` that stores the Redis username. |
-| externalRedis.existingPasswordKey | string | `"redis-password"` | The key in `externalRedis.existingSecret` that stores the Redis password. |
+| externalRedis.existingSecretUsernameKey | string | `"redis-username"` | The key in `externalRedis.existingSecret` that stores the Redis username. |
+| externalRedis.existingSecretPasswordKey | string | `"redis-password"` | The key in `externalRedis.existingSecret` that stores the Redis password. |
 | externalRedis.host | string | `""` | External Redis server host |
 | externalRedis.password | string | `""` | External Redis password |
 | externalRedis.port | int | `6379` | External Redis server port |
