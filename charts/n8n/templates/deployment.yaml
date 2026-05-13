@@ -301,9 +301,12 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       {{- if eq .Values.taskRunners.mode "external" }}
+        {{- $taskRunnerRepository := default .Values.image.repository .Values.taskRunners.image.repository }}
+        {{- $taskRunnerTag := default (.Values.image.tag | default .Chart.AppVersion) .Values.taskRunners.image.tag }}
+        {{- $taskRunnerPullPolicy := default .Values.image.pullPolicy .Values.taskRunners.image.pullPolicy }}
         - name: {{ template "n8n.taskRunners.name" . }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ $taskRunnerRepository }}:{{ $taskRunnerTag }}"
+          imagePullPolicy: {{ $taskRunnerPullPolicy }}
           command: ["/usr/local/bin/task-runner-launcher"]
           args: ["javascript"]
           ports:
