@@ -1,0 +1,33 @@
+name: Release Please
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: { }
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    # Run only on manual dispatch or on push with a release-please bump commit message
+    name: Create or update release PR
+    runs-on: ubuntu-latest
+    concurrency:
+      group: release-please-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+          # TODO: Add Automatic test check before running release please
+
+      - name: Release Please
+        uses: podcamp/Action-ReleasePlease@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: '.release-please-config.json'
+          manifest-file: '.release-please-manifest.json'
+          addExtraTags: false
