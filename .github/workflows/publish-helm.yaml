@@ -1,0 +1,35 @@
+name: Publish Helm Chart
+
+on:
+  release:
+    types: [ published ]
+  create:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to package (e.g., v0.1.2 or 0.1.2)'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write # required for cosign keyless signing/attestation
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish chart (with cosign keyless)
+        uses: podcamp/HelmChartPublish@v0
+        with:
+          tag-name: ${{ github.ref_name }}
+          chart-path: ./charts/n8n
+          github-registry-path: charts
+          push-to-github-release: 'true'
+          push-to-github-registry: 'true'
+          push-to-dockerhub: 'false'
+          enable-cosign: 'false'
+          # enable-cosign-attest: 'true'        # uncomment to add attestations globally
+          # cosign-annotations: repo=${{ github.repository }},ref=${{ github.ref }}
+          # cosign-args: '--tlog-upload=true'
