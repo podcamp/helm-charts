@@ -280,6 +280,10 @@ Please find more detail about external task runners from [here](https://docs.n8n
 ```yaml
 taskRunners:
   mode: external
+  image:
+    repository: "n8nio/n8n-task-runner"
+    tag: "2.0.0"
+    pullPolicy: Always
 ```
 
 ## Autoscaling Configuration

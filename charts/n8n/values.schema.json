@@ -4012,6 +4012,36 @@
     "taskRunners": {
       "additionalProperties": false,
       "properties": {
+        "image": {
+          "additionalProperties": false,
+          "description": "Override the task runner container image. Defaults to the main image values when left empty.",
+          "properties": {
+            "repository": {
+              "default": "",
+              "description": "Task runner image repository override",
+              "required": [],
+              "title": "repository",
+              "type": "string"
+            },
+            "tag": {
+              "default": "",
+              "description": "Task runner image tag override",
+              "required": [],
+              "title": "tag",
+              "type": "string"
+            },
+            "pullPolicy": {
+              "default": "",
+              "description": "Task runner image pull policy override",
+              "required": [],
+              "title": "pullPolicy",
+              "type": "string"
+            }
+          },
+          "required": ["repository", "tag", "pullPolicy"],
+          "title": "image",
+          "type": "object"
+        },
         "mode": {
           "default": "internal",
           "description": "Use `internal` to use internal task runner, or use `external` to have external sidecar task runner",
@@ -4146,7 +4176,7 @@
           "type": "object"
         }
       },
-      "required": ["mode", "taskTimeout", "taskHeartbeatInterval", "maxConcurrency", "broker"],
+      "required": ["image", "mode", "taskTimeout", "taskHeartbeatInterval", "maxConcurrency", "broker"],
       "if": {
         "properties": {
           "mode": { "const": "external" }
