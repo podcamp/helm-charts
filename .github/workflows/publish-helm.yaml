@@ -3,7 +3,6 @@ name: Publish Helm Chart
 on:
   release:
     types: [ published ]
-  create:
   workflow_dispatch:
     inputs:
       tag:
@@ -27,7 +26,8 @@ jobs:
       - name: Publish chart (with cosign keyless)
         uses: podcamp/Action-HelmChartPublish@v0
         with:
-          tag-name: ${{ github.ref_name }}
+          tag-name: ${{ inputs.tag || github.event.release.tag_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           chart-path: ./charts/n8n
           github-registry-path: charts
           push-to-github-release: 'true'
