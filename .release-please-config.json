@@ -1,0 +1,16 @@
+{
+  "packages": {
+    ".": {
+      "release-type": "simple",
+      "package-name": "template-base",
+      "changelog-path": "charts/n8n/CHANGELOG.md",
+      "extra-files": {
+        "type": "helm",
+        "path": "charts/n8n"
+      }
+    }
+  },
+  "include-component-in-tag": false,
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true
+}
