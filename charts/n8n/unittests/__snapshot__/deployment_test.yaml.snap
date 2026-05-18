@@ -990,7 +990,11 @@ should match snapshot of postgres ssl certificate values:
                 - name: N8N_GRACEFUL_SHUTDOWN_TIMEOUT
                   value: "30"
                 - name: DB_POSTGRESDB_USER
-                  value: postgres
+                  valueFrom:
+                    secretKeyRef:
+                      key: postgres-username
+                      name: n8n-postgresql
+                      optional: true
                 - name: DB_POSTGRESDB_PASSWORD
                   valueFrom:
                     secretKeyRef:
@@ -1084,6 +1088,7 @@ should match snapshot of postgres ssl certificate values:
     apiVersion: v1
     data:
       postgres-password: ""
+      postgres-username: cG9zdGdyZXM=
     kind: Secret
     metadata:
       labels:
