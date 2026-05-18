@@ -20,6 +20,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - name: Install PowerShell
+        uses: PSModule/install-powershell@v1
+        with:
+          Version: 7.5.0
       - name: Publish chart (with cosign keyless)
         uses: podcamp/Action-HelmChartPublish@v0
         with:
