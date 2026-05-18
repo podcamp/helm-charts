@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2](https://github.com/podcamp/helm-charts/compare/v0.1.1...v0.1.2) (2026-05-18)
+
+
+### Features
+
+* configurable external secret key names ([#3](https://github.com/podcamp/helm-charts/issues/3)) ([8d233fe](https://github.com/podcamp/helm-charts/commit/8d233fe5e82d0522cebbcfe53a58efd42e453b70))
+* support task runner image override ([#5](https://github.com/podcamp/helm-charts/issues/5)) ([a654fd5](https://github.com/podcamp/helm-charts/commit/a654fd5878fb8b5894b67d802b224c929fb31c31))
+
 ## [0.1.1](https://github.com/podcamp/helm-charts/compare/v0.1.0...v0.1.1) (2026-05-18)
 
 
