@@ -286,6 +286,14 @@ taskRunners:
     pullPolicy: Always
 ```
 
+Control the task runner language args (allowed: `javascript`, `python`) via `worker.commandArgs`:
+
+```yaml
+worker:
+  commandArgs:
+    - python
+```
+
 ## Autoscaling Configuration
 
 > **Note:** The `autoscaling` and `allNodes` options cannot be enabled simultaneously.

@@ -318,11 +318,21 @@ spec:
         {{- $taskRunnerRepository := default .Values.image.repository .Values.taskRunners.image.repository }}
         {{- $taskRunnerTag := default (.Values.image.tag | default .Chart.AppVersion) .Values.taskRunners.image.tag }}
         {{- $taskRunnerPullPolicy := default .Values.image.pullPolicy .Values.taskRunners.image.pullPolicy }}
+        {{- $workerCommandArgs := default (list "javascript" "python") .Values.worker.commandArgs }}
+        {{- if or (not $workerCommandArgs) (eq (len $workerCommandArgs) 0) }}
+          {{- fail "worker.commandArgs must include at least one value: javascript and/or python" }}
+        {{- end }}
+        {{- $allowedWorkerCommandArgs := list "javascript" "python" }}
+        {{- range $arg := $workerCommandArgs }}
+          {{- if not (has $arg $allowedWorkerCommandArgs) }}
+            {{- fail (printf "worker.commandArgs has invalid value %q. Allowed values: javascript, python" $arg) }}
+          {{- end }}
+        {{- end }}
         - name: {{ template "n8n.taskRunners.name" . }}
           image: "{{ $taskRunnerRepository }}:{{ $taskRunnerTag }}"
           imagePullPolicy: {{ $taskRunnerPullPolicy }}
           command: ["/usr/local/bin/task-runner-launcher"]
-          args: ["javascript"]
+          args: {{ toJson $workerCommandArgs }}
           ports:
             - name: http
               containerPort: {{ .Values.taskRunners.external.port }}

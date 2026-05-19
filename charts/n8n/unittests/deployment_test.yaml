@@ -1377,7 +1377,7 @@ tests:
         template: deployment.yaml
       - equal:
           path: spec.template.spec.containers[?(@.name == "n8n-task-runners")].args
-          value: ["javascript"]
+          value: ["javascript", "python"]
         template: deployment.yaml
       - equal:
           path: spec.template.spec.containers[?(@.name == "n8n-task-runners")].ports[0].containerPort
@@ -1427,6 +1427,28 @@ tests:
           content:
             configMapRef:
               name: n8n-task-runners-configmap
+        template: deployment.yaml
+
+  - it: should set task runner args from worker.commandArgs when taskRunners.mode is external
+    set:
+      worker:
+        commandArgs:
+          - python
+      taskRunners:
+        mode: external
+        external:
+          port: 1234
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[?(@.name == "n8n-task-runners")].args
+          value: ["python"]
         template: deployment.yaml
 
   - it: should add license info command when license.enabled is true and license.activationKey is set

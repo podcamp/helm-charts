@@ -289,11 +289,21 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       {{- if eq .Values.taskRunners.mode "external" }}
+        {{- $workerCommandArgs := default (list "javascript" "python") .Values.worker.commandArgs }}
+        {{- if or (not $workerCommandArgs) (eq (len $workerCommandArgs) 0) }}
+          {{- fail "worker.commandArgs must include at least one value: javascript and/or python" }}
+        {{- end }}
+        {{- $allowedWorkerCommandArgs := list "javascript" "python" }}
+        {{- range $arg := $workerCommandArgs }}
+          {{- if not (has $arg $allowedWorkerCommandArgs) }}
+            {{- fail (printf "worker.commandArgs has invalid value %q. Allowed values: javascript, python" $arg) }}
+          {{- end }}
+        {{- end }}
         - name: {{ template "n8n.taskRunners.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["/usr/local/bin/task-runner-launcher"]
-          args: ["javascript"]
+          args: {{ toJson $workerCommandArgs }}
           ports:
             - name: http
               containerPort: {{ .Values.taskRunners.external.port }}
