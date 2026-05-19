@@ -187,6 +187,28 @@ tests:
           content: "--concurrency=10"
         template: statefulset-worker.yaml
 
+  - it: should set task runner args from worker.commandArgs when taskRunners.mode is external
+    set:
+      worker:
+        commandArgs:
+          - python
+      taskRunners:
+        mode: external
+        external:
+          port: 1234
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[?(@.name == "n8n-task-runners")].args
+          value: ["python"]
+        template: statefulset-worker.yaml
+
   - it: should set ports when service.port is set
     set:
       service:
@@ -1296,7 +1318,7 @@ tests:
         template: statefulset-worker.yaml
       - equal:
           path: spec.template.spec.containers[?(@.name == "n8n-task-runners")].args
-          value: ["javascript"]
+          value: ["javascript", "python"]
         template: statefulset-worker.yaml
       - equal:
           path: spec.template.spec.containers[?(@.name == "n8n-task-runners")].ports[0].containerPort

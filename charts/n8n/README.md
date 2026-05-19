@@ -286,6 +286,14 @@ taskRunners:
     pullPolicy: Always
 ```
 
+Control the task runner language args (allowed: `javascript`, `python`) via `worker.commandArgs`:
+
+```yaml
+worker:
+  commandArgs:
+    - python
+```
+
 ## Autoscaling Configuration
 
 > **Note:** The `autoscaling` and `allNodes` options cannot be enabled simultaneously.
@@ -1275,6 +1283,7 @@ helm upgrade [RELEASE_NAME] community-charts/n8n
 | worker.autoscaling.metrics | list | `[{"resource":{"name":"memory","target":{"averageUtilization":80,"type":"Utilization"}},"type":"Resource"},{"resource":{"name":"cpu","target":{"averageUtilization":80,"type":"Utilization"}},"type":"Resource"}]` | The metrics to use for autoscaling. |
 | worker.autoscaling.minReplicas | int | `2` | The minimum number of replicas. |
 | worker.concurrency | int | `10` | number of concurrency for each worker |
+| worker.commandArgs | list | `["javascript","python"]` | Command arguments for the task runner container. Allowed values: javascript, python. |
 | worker.count | int | `2` | Static number of workers. If allNodes or autoscaling is enabled, this value will be ignored. |
 | worker.extraContainers | list | `[]` | Additional containers for the worker pod |
 | worker.extraEnvVars | object | `{}` | Extra environment variables |

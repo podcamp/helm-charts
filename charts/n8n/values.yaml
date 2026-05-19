@@ -409,6 +409,11 @@ worker:
   # -- number of concurrency for each worker
   concurrency: 10
 
+  # -- Command arguments for the task runner container (allowed: javascript, python)
+  commandArgs:
+    - javascript
+    - python
+
   # -- Static number of workers. If allNodes or autoscaling is enabled, this value will be ignored.
   count: 2
 
