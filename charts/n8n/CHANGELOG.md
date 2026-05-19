@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/podcamp/helm-charts/compare/v0.1.2...v0.1.3) (2026-05-19)
+
+
+### Features
+
+* add support for configurable task runner command arguments (javascript, python) ([#6](https://github.com/podcamp/helm-charts/issues/6)) ([d81be81](https://github.com/podcamp/helm-charts/commit/d81be8100a4339fcad81761d45fa1a51030085e7))
+
 ## [0.1.2](https://github.com/podcamp/helm-charts/compare/v0.1.1...v0.1.2) (2026-05-18)
 
 
